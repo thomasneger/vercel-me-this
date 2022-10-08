@@ -1,13 +1,13 @@
-import { NextUIProvider, createTheme } from "@nextui-org/react";
-import { AppProps } from "next/app";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { NextUIProvider, createTheme } from '@nextui-org/react';
+import { AppProps } from 'next/app';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 const lightTheme = createTheme({
-  type: "light",
+  type: 'light',
 });
 
 const darkTheme = createTheme({
-  type: "dark",
+  type: 'dark',
 });
 
 function MyApp({ Component, pageProps }: AppProps) {

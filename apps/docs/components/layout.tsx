@@ -12,7 +12,7 @@ export function Layout({ children }: Props) {
 
   return (
     <>
-      <Navbar isBordered>
+      <Navbar isBordered maxWidth="xl" variant="sticky">
         <Navbar.Brand>
           <AcmeLogo />
           <Text b color="inherit">

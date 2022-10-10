@@ -53,6 +53,9 @@ export function Layout({ children }: Props) {
               }}
             >
               <Dropdown.Item key="settings">Settings</Dropdown.Item>
+              <Dropdown.Item key="admin" withDivider>
+                Admin
+              </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Navbar.Content>

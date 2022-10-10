@@ -1,5 +1,11 @@
-import { Container } from '@nextui-org/react';
+import { Container, Spacer } from '@nextui-org/react';
+import { UserProgress } from '../components/user-progress';
 
 export default function Docs() {
-  return <Container></Container>;
+  return (
+    <Container>
+      <Spacer />
+      <UserProgress />
+    </Container>
+  );
 }

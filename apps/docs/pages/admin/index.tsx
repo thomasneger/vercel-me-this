@@ -1,11 +1,4 @@
-import {
-  Checkbox,
-  Container,
-  Row,
-  Spacer,
-  Switch,
-  Text,
-} from '@nextui-org/react';
+import { Container, Row, Spacer, Switch, Text } from '@nextui-org/react';
 import { GetStaticProps } from 'next';
 import { loadFeatures, Features } from '../../lib/features';
 

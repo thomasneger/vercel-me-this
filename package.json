@@ -21,6 +21,7 @@
     "turbo": "latest"
   },
   "lint-staged": {
+    "**/*.{ts,tsx}": "eslint --fix",
     "**/*": "prettier --write --ignore-unknown"
   },
   "engines": {

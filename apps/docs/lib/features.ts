@@ -1,10 +1,10 @@
-// In a real use case, this would be persisted somewhere (filesystem, db)
-const features = {
-  userProgress: true,
-};
+import { GetServerSidePropsContext } from 'next';
 
-export type Features = typeof features;
+export type Features = { userProgress: boolean };
 
-export function loadFeatures() {
-  return features;
+export function extractFeaturesCookie(context: GetServerSidePropsContext) {
+  const { req } = context;
+  const userProgress = req.cookies.userProgress;
+
+  return { userProgress: userProgress === 'true' };
 }

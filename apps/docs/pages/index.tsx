@@ -1,8 +1,8 @@
 import { Container, Spacer } from '@nextui-org/react';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
-import { Features, loadFeatures } from '../lib/features';
+import { extractFeaturesCookie, Features } from '../lib/features';
 
 interface Props {
   features: Features;
@@ -14,7 +14,6 @@ const DynamicUserProgress = dynamic(() =>
 
 export default function Docs({ features }: Props) {
   const { userProgress } = features;
-
   return (
     <Container>
       <Spacer />
@@ -23,8 +22,8 @@ export default function Docs({ features }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const features = loadFeatures();
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const features = extractFeaturesCookie(context);
 
   return {
     props: { features },

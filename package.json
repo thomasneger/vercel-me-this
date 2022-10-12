@@ -14,6 +14,8 @@
     "prepare": "node ./prepare.js"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "eslint-config-custom": "*",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",

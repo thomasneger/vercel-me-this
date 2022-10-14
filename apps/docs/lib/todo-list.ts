@@ -1,4 +1,4 @@
-export type Todos = { title: string; checked: boolean }[];
+export type Todos = { title: string; done: boolean }[];
 
 export function getAll() {
   const todosStorage = localStorage.getItem('todos');

@@ -22,11 +22,11 @@ export function TodoList() {
       setTasks(todos);
     } else {
       setTasks([
-        { title: 'Implement a todo-list', checked: true },
-        { title: 'Hook to local storage', checked: true },
+        { title: 'Implement a todo-list', done: true },
+        { title: 'Hook to local storage', done: true },
         {
           title: 'Mitigate the flash of content after hydration',
-          checked: false,
+          done: false,
         },
       ]);
     }
@@ -36,7 +36,7 @@ export function TodoList() {
     <Container gap={1}>
       <Spacer y={1} />
 
-      {tasks.map(({ title, checked }, key) => (
+      {tasks.map(({ title, done }, key) => (
         <TaskRow align="center" key={key}>
           <Col span={10}>
             <Input
@@ -45,7 +45,7 @@ export function TodoList() {
               fullWidth
               size="xl"
               value={title}
-              status={checked ? 'success' : 'default'}
+              status={done ? 'success' : 'default'}
               onChange={(e) => {
                 update(
                   tasks.map((t, i) => {
@@ -67,12 +67,12 @@ export function TodoList() {
                   aria-label="toggle"
                   size="xl"
                   color="success"
-                  defaultSelected={checked}
-                  onChange={(checked) => {
+                  defaultSelected={done}
+                  onChange={(done) => {
                     setTasks((prev) => {
                       const newTasks = prev.map((t, i) => {
                         if (i === key) {
-                          return { ...t, checked };
+                          return { ...t, done };
                         }
 
                         return t;
@@ -116,7 +116,7 @@ export function TodoList() {
           <AddMoreInput
             onChange={(title) => {
               setTasks((prev) => {
-                const newTasks = [...prev, { title, checked: false }];
+                const newTasks = [...prev, { title, done: false }];
 
                 update(newTasks);
 

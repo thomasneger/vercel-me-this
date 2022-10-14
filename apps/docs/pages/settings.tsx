@@ -6,7 +6,9 @@ import {
   Text,
   Spacer,
   Row,
+  Link,
 } from '@nextui-org/react';
+import NextLink from 'next/link';
 
 export default function Profile() {
   const { setTheme } = useNextTheme();
@@ -27,6 +29,13 @@ export default function Profile() {
           You can pick your preferred theme. It will be cached for the next time
           you visit 🎨.
         </Text>
+      </Row>
+
+      <Text h2>Home page</Text>
+      <Row align="center">
+        <NextLink href="/settings/user-progress" passHref>
+          <Link block>Edit user progress</Link>
+        </NextLink>
       </Row>
     </Container>
   );

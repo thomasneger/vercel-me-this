@@ -1,4 +1,4 @@
-import { Container, Text } from '@nextui-org/react';
+import { Container, Spacer, Text } from '@nextui-org/react';
 import { GetServerSideProps } from 'next';
 import { ToggleSection } from '../../components/toggle-section';
 import { extractFeaturesCookie, Features } from '../../lib/features';
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function Admin({ features }: Props) {
-  const { userProgress } = features;
+  const { userProgress, userProgressProfilePreview } = features;
 
   return (
     <Container>
@@ -20,6 +20,16 @@ export default function Admin({ features }: Props) {
         checked={userProgress}
         onChange={(checked) => {
           document.cookie = `userProgress=${checked}`;
+        }}
+      />
+
+      <Spacer />
+
+      <ToggleSection
+        text="Edit user progress in profile settings"
+        checked={userProgressProfilePreview}
+        onChange={(checked) => {
+          document.cookie = `userProgressProfilePreview=${checked}`;
         }}
       />
     </Container>

@@ -8,13 +8,29 @@ import {
   Spacer,
   styled,
 } from '@nextui-org/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Delete } from 'react-iconly';
+import { Todos, getAll, update } from '../lib/todo-list';
 
 export function TodoList() {
-  const [tasks, setTasks] = useState([
-    { title: 'Implement a todo-list', checked: true },
-  ]);
+  const [tasks, setTasks] = useState<Todos>([]);
+
+  useEffect(() => {
+    const todos = getAll();
+
+    if (todos) {
+      setTasks(todos);
+    } else {
+      setTasks([
+        { title: 'Implement a todo-list', checked: true },
+        { title: 'Hook to local storage', checked: true },
+        {
+          title: 'Mitigate the flash of content after hydration',
+          checked: false,
+        },
+      ]);
+    }
+  }, []);
 
   return (
     <Container gap={1}>
@@ -30,6 +46,17 @@ export function TodoList() {
               size="xl"
               value={title}
               status={checked ? 'success' : 'default'}
+              onChange={(e) => {
+                update(
+                  tasks.map((t, i) => {
+                    if (i === key) {
+                      return { ...t, title: e.target.value };
+                    }
+
+                    return t;
+                  })
+                );
+              }}
             />
           </Col>
           <Col span={2}>
@@ -42,15 +69,19 @@ export function TodoList() {
                   color="success"
                   defaultSelected={checked}
                   onChange={(checked) => {
-                    setTasks((prev) =>
-                      prev.map((t, i) => {
+                    setTasks((prev) => {
+                      const newTasks = prev.map((t, i) => {
                         if (i === key) {
                           return { ...t, checked };
                         }
 
                         return t;
-                      })
-                    );
+                      });
+
+                      update(newTasks);
+
+                      return newTasks;
+                    });
                   }}
                 />
               </Col>
@@ -60,8 +91,14 @@ export function TodoList() {
                   bordered
                   auto
                   iconRight={<Delete filled />}
-                  onClick={() => {
-                    setTasks((prev) => prev.filter((_, i) => i !== key));
+                  onPress={() => {
+                    setTasks((prev) => {
+                      const newTasks = prev.filter((_, i) => i !== key);
+
+                      update(newTasks);
+
+                      return newTasks;
+                    });
                   }}
                 >
                   Delete
@@ -78,7 +115,13 @@ export function TodoList() {
         <Col span={10}>
           <AddMoreInput
             onChange={(title) => {
-              setTasks((prev) => [...prev, { title, checked: false }]);
+              setTasks((prev) => {
+                const newTasks = [...prev, { title, checked: false }];
+
+                update(newTasks);
+
+                return newTasks;
+              });
             }}
           />
         </Col>

@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.1.0](https://github.com/thomasneger/vercel-me-this/compare/v1.0.0...v1.1.0) (2022-10-14)
+
+
+### Features
+
+* **todo-list:** add new section ([3602eb7](https://github.com/thomasneger/vercel-me-this/commit/3602eb739e5314db8178b3895f3677186af4a4fc))
+* **todo-list:** hook to local storage ([2f57492](https://github.com/thomasneger/vercel-me-this/commit/2f574921b7462fc2923a45101d1713120c9a55c3))
+* **user-progress:** add feature in settings ([f8fed20](https://github.com/thomasneger/vercel-me-this/commit/f8fed204186077783f4bd66930ede468c989a10b))
+
+
+### Bug Fixes
+
+* **settings:** improve feature toggle row layout ([3817737](https://github.com/thomasneger/vercel-me-this/commit/381773774b70c96447436db822b93dcafd5d31f6))
+
 ## 1.0.0 (2022-10-12)
 
 

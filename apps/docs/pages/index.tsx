@@ -1,7 +1,8 @@
-import { Container, Spacer } from '@nextui-org/react';
+import { Text, Container, Spacer } from '@nextui-org/react';
 import { GetServerSideProps } from 'next';
 import dynamic from 'next/dynamic';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
+import { TodoList } from '../components/todo-list';
 import { extractFeaturesCookie, Features } from '../lib/features';
 
 interface Props {
@@ -17,8 +18,36 @@ export default function Docs({ features }: Props) {
   return (
     <Container>
       <Spacer />
-      <Suspense>{userProgress && <DynamicUserProgress />}</Suspense>
+      <Section title="To-do list">
+        <TodoList />
+      </Section>
+
+      <Suspense>
+        {userProgress && (
+          <Section title="Progress">
+            <DynamicUserProgress />
+          </Section>
+        )}
+      </Suspense>
     </Container>
+  );
+}
+
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <Text h1 size="$2xl">
+        {title}
+      </Text>
+      {children}
+      <Spacer y={2} />
+    </>
   );
 }
 
